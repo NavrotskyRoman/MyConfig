@@ -18,6 +18,8 @@
  cd ~/scripts/configs  
 
  date >> $LOG 
+ git status
+
  backup >> $LOG 2>&1
  git add . >> $LOG 2>&1
  git commit -m "$DATE" >> $LOG 2>&1
