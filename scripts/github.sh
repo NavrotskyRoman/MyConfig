@@ -27,5 +27,6 @@
  echo "Done!\n" >> $LOG 
 
  cat $LOG
+ echo "Press what you want!"
  read any_key
 
