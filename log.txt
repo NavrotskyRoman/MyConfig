@@ -1,25 +1,2 @@
 
-Суб Мар 30 15:08:26 EET 2019
-[master 72c41c3] date
- 3 files changed, 7 insertions(+), 20 deletions(-)
- create mode 100644 .gitignore
- rewrite log.txt (99%)
-To git@github.com:NavrotskyRoman/MyConfig
-   34fae24..72c41c3  master -> master
-Done!
-
-Суб Мар 30 15:12:14 EET 2019
-[master a3a73af] date
- 2 files changed, 11 insertions(+)
-To git@github.com:NavrotskyRoman/MyConfig
-   72c41c3..a3a73af  master -> master
-Done!
-
-Суб Мар 30 15:12:32 EET 2019
-[master c594fe0] date
- 1 file changed, 7 insertions(+)
-To git@github.com:NavrotskyRoman/MyConfig
-   a3a73af..c594fe0  master -> master
-Done!
-
-Суб Мар 30 15:13:29 EET 2019
+Суб Мар 30 15:17:29 EET 2019

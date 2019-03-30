@@ -15,11 +15,15 @@
  cp ~/.tmux.conf ~/scripts/configs/tmux/tmux.conf
 }
 
- date >> $LOG
- backup >> $LOG
  cd ~/scripts/configs  
+
+ date >> $LOG 
+ backup >> $LOG 2>&1
  git add . >> $LOG 2>&1
  git commit -m "date" >> $LOG 2>&1
  git push >> $LOG 2>&1
  echo "Done!\n" >> $LOG 
+
+ cat $LOG
+ read any_key
 
