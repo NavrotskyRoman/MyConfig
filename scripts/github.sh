@@ -18,7 +18,7 @@
  cd ~/scripts/configs  
 
  date >> $LOG 
- git status
+ git diff
 
  backup >> $LOG 2>&1
  git add . >> $LOG 2>&1
