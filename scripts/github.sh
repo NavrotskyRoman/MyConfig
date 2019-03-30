@@ -16,6 +16,9 @@
 }
 
  date >> $LOG
- backup 2>> $LOG
- echo "Done!\n" >> $LOG
+ backup >> $LOG
+ cd ~/scripts/configs  
+ git commit -m "date" >> $LOG 2>&1
+ git push >> $LOG 2>&1
+ echo "Done!\n" >> $LOG 
 
