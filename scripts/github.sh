@@ -3,7 +3,7 @@
 # 3) Implement in i3 at start
 
  LOG=~/scripts/configs/log.txt
- DATE=date
+ DATE=$( date )
  backup () {
  cp ~/scripts/github.sh ~/scripts/configs/scripts/github.sh 
  cp ~/scripts/todo_run.sh ~/scripts/configs/scripts/todo_run.sh 
@@ -29,4 +29,5 @@
  cat $LOG
  echo "Press what you want!"
  read any_key
+# read "-t5" any_key
 
