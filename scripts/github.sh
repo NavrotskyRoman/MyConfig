@@ -3,7 +3,7 @@
 # 3) Implement in i3 at start
 
  LOG=~/scripts/configs/log.txt
-
+ DATE=date
  backup () {
  cp ~/scripts/github.sh ~/scripts/configs/scripts/github.sh 
  cp ~/scripts/todo_run.sh ~/scripts/configs/scripts/todo_run.sh 
@@ -20,7 +20,7 @@
  date >> $LOG 
  backup >> $LOG 2>&1
  git add . >> $LOG 2>&1
- git commit -m "date" >> $LOG 2>&1
+ git commit -m "$DATE" >> $LOG 2>&1
  git push >> $LOG 2>&1
  echo "Done!\n" >> $LOG 
 
