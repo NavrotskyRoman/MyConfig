@@ -11,6 +11,7 @@ exec_always compton
 exec_always --no-startup-id feh --bg-scale /home/rodjer113/pictures/qwe_download.jpeg 
 exec ~/scripts/todo_run.sh
 exec ~/scripts/github.sh
+exec nm-applet
 
 #exec killall -q notify-osd
 #exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
