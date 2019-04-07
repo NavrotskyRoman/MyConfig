@@ -16,7 +16,9 @@ compositing-border = over
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #EE222222
+background = #cc000000.
+;#aa2F343F-semi transperant
+;#2F343F-no transperant
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -25,11 +27,21 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+level-1 = #f7f4f4
+level-2 = #f7f4f4
+level-3 = #f9e800
+level-4 = #f9c700
+level-5 = #f95300
+level-6 = #f95300
+level-7 = #f93500
+level-8 = #f90000
+
+
 [bar/default]
 width = 100%
-height = 27
+height = 25
 radius = 3.0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -50,9 +62,11 @@ font-0 = fixed:pixelsize=10;1
 font-1 = FontAwesome:size=10;1
 font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm i3
-modules-center = 
-modules-right = volume memory cpu wlan battery temperature date Shutdown
+;STATUS-BAR!!!
+modules-left = bspwm i3 demo
+modules-center = cpu memory cputemp cpu_fan
+modules-right = info-hackspeed volume wlan  battery xkeyboard date 
+;STATUS-BAR!!!
 
 tray-detached = false
 tray-position = right
@@ -70,6 +84,44 @@ tray-position = right
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
+
+############################################################
+[module/cputemp]
+type = custom/script
+
+;label-background = ${colors.bg}
+;label-padding = 0
+label-underline = ${colors.level-3}
+
+exec = sensors | sed -rn 's/.*Package id 0:\s+([^ ]+).*/\1/p' 
+interval = 3
+
+label = "Core: %output%"
+############################################################
+
+############################################################
+[module/cpu_fan]
+type = custom/script
+
+;label-background = ${colors.bg}
+label-margin-right = 15
+label-underline = ${colors.level-5}
+
+exec = sensors | sed -rn 's/.*cpu_fan:\s+([^ ]+).*/\1/p' 
+interval = 3
+
+label = "%output% RPM"
+############################################################
+
+[module/demo]
+type = custom/ipc
+hook-0 = echo foobar
+hook-1 = date +%s
+hook-2 = whoami
+initial = 1
+click-left = polybar-msg -p %pid% hook demo 1
+click-right = polybar-msg -p %pid% hook demo 2
+double-click-left = polybar-msg -p %pid% hook demo 3
 
 [module/xwindow]
 type = internal/xwindow
@@ -191,23 +243,100 @@ card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
-interval = 2
+interval = 1
+format = <label> <ramp-coreload>
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
-label = %percentage%%
+label = CPU %percentage%%
+
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 3
+ramp-coreload-0-foreground = ${colors.level-1}
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 3
+ramp-coreload-1-foreground = ${colors.level-2}
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 3
+ramp-coreload-2-foreground = ${colors.level-3}
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 3
+ramp-coreload-3-foreground = ${colors.level-4}
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 3
+ramp-coreload-4-foreground = ${colors.level-5}
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 3
+ramp-coreload-5-foreground = ${colors.level-6}
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 3
+ramp-coreload-6-foreground = ${colors.level-7}
+ramp-coreload-7 = █
+ramp-coreload-7-font = 3
+ramp-coreload-7-foreground = ${colors.level-8}
 
 [module/memory]
 type = internal/memory
-interval = 2
+interval = 1
+format = <label> <ramp-used>
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-underline = #4bffdc
-label = %percentage_used%%
+label = RAM %percentage_used%%
+
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 20
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+; Only applies if <ramp-used> is used
+
+ramp-used-0 = ▁
+ramp-used-0-font = 3
+ramp-used-0-foreground = ${colors.level-1}
+ramp-used-1 = ▂
+ramp-used-1-font = 3
+ramp-used-1-foreground = ${colors.level-2}
+ramp-used-2 = ▃
+ramp-used-2-font = 3
+ramp-used-2-foreground = ${colors.level-3}
+ramp-used-3 = ▄
+ramp-used-3-font = 3
+ramp-used-3-foreground = ${colors.level-4}
+ramp-used-4 = ▅
+ramp-used-4-font = 3
+ramp-used-4-foreground = ${colors.level-5}
+ramp-used-5 = ▆
+ramp-used-5-font = 3
+ramp-used-5-foreground = ${colors.level-6}
+ramp-used-6 = ▇
+ramp-used-6-font = 3
+ramp-used-6-foreground = ${colors.level-7}
+ramp-used-7 = █
+ramp-used-7-font = 3
+ramp-used-7-foreground = ${colors.level-8}
+
+
+; Only applies if <ramp-free> is used
+ramp-free-0 = ▁
+ramp-free-1 = ▂
+ramp-free-2 = ▃
+ramp-free-3 = ▄
+ramp-free-4 = ▅
+ramp-free-5 = ▆
+ramp-free-6 = ▇
+ramp-free-7 = █
 
 [module/wlan]
 type = internal/network
-interface = wlp3s0
+interface = wlp3s0f0
 interval = 3.0
 
 format-connected =  <label-connected>
@@ -238,19 +367,19 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
-date = %m-%d-%Y
+date = %d-%m-%Y
 date-alt = " %Y-%m-%d"
 
-time = %H:%M
+time = %H:%M:%S
 time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
-label =  %time%   %date%
+label =  %date%  %time%  
 
 [module/volume]
 type = internal/volume
@@ -311,17 +440,70 @@ animation-charging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+
+; Thermal zone to use
+; To list all the zone types, run 
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
 thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
+
 warn-temperature = 60
 
-format =  <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+; Whether or not to show units next to the temperature tokens (°C, °F)
+; Default: true
+units = false
 
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+; Available tags:
+;   <label> (default)
+;   <ramp>
+format = <ramp> <label>
+
+; Available tags:
+;   <label-warn> (default)
+;   <ramp>
+format-warn = <ramp> <label-warn>
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label = %temperature-c%
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label-warn = %temperature-c%
+label-warn-foreground = #f00
+
+; Requires the <ramp> tag
+; The icon selection will range from 0 to `warn-temperature`
+; with the current temperature as index.
+ramp-0 = A
+ramp-1 = B
+ramp-2 = C
+ramp-foreground = #55
+
+[module/info-hackspeed]
+type = custom/script
+label-underline = ${colors.level-2}
+exec = ~/.config/polybar/scripts/info-hackspeed.sh
+tail = true
 
 [module/Shutdown]
 type = custom/script
@@ -336,4 +518,75 @@ format-foreground = ${colors.secondary}
 margin-top = 5
 margin-bottom = 5
 
-; vim:ft=dosini
+; vim:fdown=dosini
+
+[module/cpu-bar]
+type = internal/cpu
+interval = 1
+format = <label> <ramp-coreload>
+label = CPU 
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 3
+ramp-coreload-0-foreground = #aaff77
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 3
+ramp-coreload-1-foreground = #aaff77
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 3
+ramp-coreload-2-foreground = #aaff77
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 3
+ramp-coreload-3-foreground = #aaff77
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 3
+ramp-coreload-4-foreground = #fba922
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 3
+ramp-coreload-5-foreground = #2aaff77
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 3
+ramp-coreload-6-foreground = #ff555
+ramp-coreload-7 = █
+ramp-coreload-7-font = 3
+ramp-coreload-7-foreground = #ff555
+
+[module/memory-bar]
+type = internal/memory
+interval = 1
+format = <bar-used>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+format-underline = #4bffdc
+
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 100 
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+; Only applies if <ramp-used> is used
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+
+; Only applies if <ramp-free> is used
+ramp-free-0 = ▁
+ramp-free-1 = ▂
+ramp-free-2 = ▃
+ramp-free-3 = ▄
+ramp-free-4 = ▅
+ramp-free-5 = ▆
+ramp-free-6 = ▇
+ramp-free-7 = █
+

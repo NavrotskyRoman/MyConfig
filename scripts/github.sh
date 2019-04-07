@@ -9,6 +9,7 @@
 
  cp ~/.config/polybar/config ~/scripts/configs/polybar/config
  cp ~/.config/polybar/polybar.sh ~/scripts/configs/polybar/polybar.sh
+ cp ~/.config/polybar/scripts/info-hackspeed.sh ~/scripts/configs/polybar/info-hackspeed.sh 
 
  cp ~/.vimrc ~/scripts/configs/vim/vimrc
  cp ~/.zshrc ~/scripts/configs/zsh/zshrc
