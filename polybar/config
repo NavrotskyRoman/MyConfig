@@ -104,7 +104,7 @@ label = "Core: %output%"
 type = custom/script
 
 ;label-background = ${colors.bg}
-label-margin-right = 15
+label-margin-right = 10
 label-underline = ${colors.level-5}
 
 exec = sensors | sed -rn 's/.*cpu_fan:\s+([^ ]+).*/\1/p' 
