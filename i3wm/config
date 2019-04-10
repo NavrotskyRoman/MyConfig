@@ -12,7 +12,7 @@ exec_always --no-startup-id feh --bg-scale /home/rodjer113/pictures/qwe_download
 exec ~/scripts/todo_run.sh
 exec ~/scripts/github.sh
 exec nm-applet
-exec --no-startup-id $HOME/.config/polybar/polybar.sh
+#exec --no-startup-id $HOME/.config/polybar/polybar.sh
 
 #exec killall -q notify-osd
 #exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
@@ -51,6 +51,9 @@ bindsym $mod+F12 exec pactl set-sink-volume 0 +5%
 bindsym $mod+F11 exec pactl set-sink-volume 0 -5% 
 bindsym $mod+F10 exec pactl set-sink-volume 0 0% 
 bindsym $mod+Shift+F10 exec pactl set-sink-volume 0 100% 
+
+#Monitors
+bindsym $mod+Shift+s exec ~/.config/i3/i3-display-swap.sh
 
 client.focused #00C1FF #00C1FF #000088 #00C1FF 
 

@@ -1,11 +1,3 @@
-;=====================================================
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
-;
-;   The README contains alot of information
-;
-;=====================================================
 
 [settings]
 compositing-background = over
@@ -36,8 +28,10 @@ level-6 = #f95300
 level-7 = #f93500
 level-8 = #f90000
 
-
+################################################################
+################################################################
 [bar/default]
+monitor=LVDS-1-1
 width = 100%
 height = 25
 radius = 3.0
@@ -63,10 +57,63 @@ font-1 = FontAwesome:size=10;1
 font-2 = siji:pixelsize=10;1
 
 ;STATUS-BAR!!!
-modules-left = bspwm i3 demo
-modules-center = cpu memory cputemp cpu_fan
-modules-right = info-hackspeed volume wlan  battery xkeyboard date 
+modules-left = i3 
+modules-center = cpu memory gpu cputemp gputemp cpu_fan network
+modules-right = info-hackspeed wlan battery xkeyboard date 
 ;STATUS-BAR!!!
+
+tray-detached = false
+tray-position = none
+;tray-padding = 2
+;tray-transparent = true
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+################################################################
+################################################################
+
+[bar/down]
+monitor=LVDS-1-1
+bottom=true
+width = 100%
+height = 15
+radius = 3.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = fixed:pixelsize=10;1
+font-1 = FontAwesome:size=10;1
+font-2 = siji:pixelsize=10;1
+
+;DOWN-BAR!!!
+modules-left = 
+modules-center =
+modules-right = volume
+;DOWN-BAR!!!
 
 tray-detached = false
 tray-position = right
@@ -84,8 +131,93 @@ tray-position = right
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
+############################################################
+
+[module/network]
+type = internal/network
+interface = wlp3s0f0
+label-underline = ${colors.level-3}
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
+
+; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+; Minimum output width of upload/download rate
+; Default: 3
+udspeed-minwidth = 5
+
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+; Consider an `UNKNOWN` interface state as up.
+; Some devices have an unknown state, even when they're running
+; Default: false
+unknown-as-up = true
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected =<label-connected>
+
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+format-packetloss = <animation-packetloss> <label-connected>
+
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+
+; Default: %ifname% %local_ip%
+label-connected =DN:%downspeed:min:max%  |  UP:%upspeed:min:max%  |  %signal% %
+label-connected-foreground = #eefafafa
+
+; Default: (none)
+label-disconnected = not connected
+label-disconnected-foreground = #66ffffff
+
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
 
 ############################################################
+
 [module/cputemp]
 type = custom/script
 
@@ -100,11 +232,24 @@ label = "Core: %output%"
 ############################################################
 
 ############################################################
+[module/gputemp]
+type = custom/script
+
+;label-background = ${colors.bg}
+;label-padding = 0
+label-underline = ${colors.level-7}
+
+exec = nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader
+interval = 1
+label = "GPU: +%output% °C"
+############################################################
+
+############################################################
 [module/cpu_fan]
 type = custom/script
 
 ;label-background = ${colors.bg}
-label-margin-right = 10
+;label-margin-right = 10
 label-underline = ${colors.level-5}
 
 exec = sensors | sed -rn 's/.*cpu_fan:\s+([^ ]+).*/\1/p' 
@@ -113,15 +258,41 @@ interval = 3
 label = "%output% RPM"
 ############################################################
 
-[module/demo]
-type = custom/ipc
-hook-0 = echo foobar
-hook-1 = date +%s
-hook-2 = whoami
-initial = 1
-click-left = polybar-msg -p %pid% hook demo 1
-click-right = polybar-msg -p %pid% hook demo 2
-double-click-left = polybar-msg -p %pid% hook demo 3
+############################################################
+[module/gpu]
+type = custom/script
+interval = 3
+
+exec = ~/.config/polybar/scripts/gpu_usage.sh
+format-underline = #f90000
+label = "%output%"
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 3
+ramp-coreload-0-foreground = ${colors.level-1}
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 3
+ramp-coreload-1-foreground = ${colors.level-2}
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 3
+ramp-coreload-2-foreground = ${colors.level-3}
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 3
+ramp-coreload-3-foreground = ${colors.level-4}
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 3
+ramp-coreload-4-foreground = ${colors.level-5}
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 3
+ramp-coreload-5-foreground = ${colors.level-6}
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 3
+ramp-coreload-6-foreground = ${colors.level-7}
+ramp-coreload-7 = █
+ramp-coreload-7-font = 3
+ramp-coreload-7-foreground = ${colors.level-8}
+
+############################################################
 
 [module/xwindow]
 type = internal/xwindow
