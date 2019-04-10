@@ -6,28 +6,27 @@
 # Uncomment this to still load settings configured via autoconfig.yml
 # config.load_autoconfig()
 
-# Bindings for normal mode
-config.bind(';M', 'spawn --detach smplayer {url}')
-config.bind(';m', 'hint links spawn smplayer {hint-url}')
-config.bind('j', 'scroll down')
-config.bind('k', 'scroll up')
-
-# Position of the tab bar.
-# Type: Position
-# Valid values:
-#   - top
-#   - bottom
-#   - left
-#   - right
-c.tabs.position = 'left'
-
 # Font used in the tab bar.
 # Type: QtFont
 c.fonts.tabs = '9pt monospace'
 
-# URL parameters to strip with `:yank url`.
-# Type: List of String
-c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+# Which categories to show (in which order) in the :open completion.
+# Type: FlagList
+# Valid values:
+#   - searchengines
+#   - quickmarks
+#   - bookmarks
+#   - history
+c.completion.open_categories = ['searchengines', 'quickmarks', 'bookmarks', 'history']
+
+# Font color for hints.
+# Type: QssColor
+c.colors.hints.fg = 'green'
+
+# Format to use for the tab title for pinned tabs. The same placeholders
+# like for `tabs.title.format` are defined.
+# Type: FormatString
+c.tabs.title.format_pinned = '{index}'
 
 # List of widgets displayed in the statusbar.
 # Type: List of String
@@ -41,13 +40,28 @@ c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaig
 #   - progress: Progress bar for the current page loading.
 c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
 
-# Force pinned tabs to stay at fixed URL.
-# Type: Bool
-c.tabs.pinned.frozen = True
+# Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
+# for a blank page.
+# Type: FuzzyUrl
+c.url.default_page = 'https://start.duckduckgo.com/'
 
-# Padding (in pixels) around text for tabs.
-# Type: Padding
-c.tabs.padding = {'bottom': 3, 'left': 5, 'right': 5, 'top': 3}
+# Enable host blocking.
+# Type: Bool
+c.content.host_blocking.enabled = True
+
+# This setting can be used to map keys to other keys. When the key used
+# as dictionary-key is pressed, the binding for the key used as
+# dictionary-value is invoked instead. This is useful for global
+# remappings of keys, for example to map Ctrl-[ to Escape. Note that
+# when a key is bound (via `bindings.default` or `bindings.commands`),
+# the mapping is ignored.
+# Type: Dict
+c.bindings.key_mappings = {'<Shift+Enter>': '<Return>', '<Ctrl+j>': '<Return>', '<Shift+Return>': '<Return>', '<Ctrl+6>': '<Ctrl+^>', '<Ctrl+Enter>': '<Ctrl+Return>', '<Enter>': '<Return>', '<Ctrl+m>': '<Return>', '<Ctrl+[>': '<Escape>'}
+
+# Format to use for the window title. The same placeholders like for
+# `tabs.title.format` are defined.
+# Type: FormatString
+c.window.title_format = '{perc}{title}{title_sep}qutebrowser'
 
 # Enable JavaScript.
 # Type: Bool
@@ -61,108 +75,46 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
+# Open new tabs (middleclick/ctrl+click) in the background.
+# Type: Bool
+c.tabs.background = False
+
 # Highlight color for keys to complete the current keychain.
 # Type: QssColor
 c.colors.keyhint.suffix.fg = '#FFFF00'
 
-# Format to use for the tab title for pinned tabs. The same placeholders
-# like for `tabs.title.format` are defined.
-# Type: FormatString
-c.tabs.title.format_pinned = '{index}'
+# Text color for the keyhint widget.
+# Type: QssColor
+c.colors.keyhint.fg = '#FFFFFF'
+
+# Default zoom level.
+# Type: Perc
+c.zoom.default = '90%'
+
+# Padding (in pixels) around text for tabs.
+# Type: Padding
+c.tabs.padding = {'left': 5, 'right': 5, 'top': 3, 'bottom': 3}
+
+# Maximum width (in pixels) of tabs (-1 for no maximum). This setting
+# only applies when tabs are horizontal. This setting does not apply to
+# pinned tabs, unless `tabs.pinned.shrink` is False. This setting may
+# not apply properly if max_width is smaller than the minimum size of
+# tab contents, or smaller than tabs.min_width.
+# Type: Int
+c.tabs.max_width = -1
 
 # Scaling factor for favicons in the tab bar. The tab size is unchanged,
 # so big favicons also require extra `tabs.padding`.
 # Type: Float
 c.tabs.favicons.scale = 1.5
 
-# Background color of the completion widget category headers.
-# Type: QssColor
-c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #888888, stop:1 #505050)'
-
-# Font color for the matched part of hints.
-# Type: QssColor
-c.colors.hints.match.fg = 'green'
-
-# Open new tabs (middleclick/ctrl+click) in the background.
+# Leave insert mode if a non-editable element is clicked.
 # Type: Bool
-c.tabs.background = False
-
-# This setting can be used to map keys to other keys. When the key used
-# as dictionary-key is pressed, the binding for the key used as
-# dictionary-value is invoked instead. This is useful for global
-# remappings of keys, for example to map Ctrl-[ to Escape. Note that
-# when a key is bound (via `bindings.default` or `bindings.commands`),
-# the mapping is ignored.
-# Type: Dict
-c.bindings.key_mappings = {'<Shift+Return>': '<Return>', '<Ctrl+6>': '<Ctrl+^>', '<Ctrl+m>': '<Return>', '<Enter>': '<Return>', '<Ctrl+j>': '<Return>', '<Shift+Enter>': '<Return>', '<Ctrl+[>': '<Escape>', '<Ctrl+Enter>': '<Ctrl+Return>'}
-
-# Width (in pixels) of the scrollbar in the completion window.
-# Type: Int
-c.completion.scrollbar.width = 8
-
-# Aliases for commands. The keys of the given dictionary are the
-# aliases, while the values are the commands they map to.
-# Type: Dict
-c.aliases = {'wqa': 'quit --save', 'w': 'session-save', 'wq': 'quit --save', 'q': 'close', 'qa': 'quit'}
-
-# Enable host blocking.
-# Type: Bool
-c.content.host_blocking.enabled = True
-
-# Always restore open sites when qutebrowser is reopened.
-# Type: Bool
-c.auto_save.session = True
-
-# Background color of the keyhint widget.
-# Type: QssColor
-c.colors.keyhint.bg = 'rgba(0, 0, 0, 80%)'
-
-# Background color for hints. Note that you can use a `rgba(...)` value
-# for transparency.
-# Type: QssColor
-c.colors.hints.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 247, 133, 0.8), stop:1 rgba(255, 197, 66, 0.8))'
-
-# Font used in the statusbar.
-# Type: Font
-c.fonts.statusbar = '10pt monospace'
-
-# Position of the status bar.
-# Type: VerticalPosition
-# Valid values:
-#   - top
-#   - bottom
-c.statusbar.position = 'bottom'
-
-# How to behave when the last tab is closed.
-# Type: String
-# Valid values:
-#   - ignore: Don't do anything.
-#   - blank: Load a blank page.
-#   - startpage: Load the start page.
-#   - default-page: Load the default page.
-#   - close: Close the window.
-c.tabs.last_close = 'ignore'
-
-# Enable smooth scrolling for web pages. Note smooth scrolling does not
-# work with the `:scroll-px` command.
-# Type: Bool
-c.scrolling.smooth = True
+c.input.insert_mode.auto_leave = False
 
 # List of user stylesheet filenames to use.
 # Type: List of File, or File
 c.content.user_stylesheets = []
-
-# Font color for hints.
-# Type: QssColor
-c.colors.hints.fg = 'green'
-
-# Background color of an error message.
-# Type: QssColor
-c.colors.messages.error.bg = 'red'
-
-# Wrap when changing tabs.
-# Type: Bool
-c.tabs.wrap = True
 
 # Format to use for the tab title. The following placeholders are
 # defined:  * `{perc}`: Percentage as a string like `[10%]`. *
@@ -178,6 +130,53 @@ c.tabs.wrap = True
 # Type: FormatString
 c.tabs.title.format = '{index}'
 
+# Padding (in pixels) for the statusbar.
+# Type: Padding
+c.statusbar.padding = {'left': 0, 'right': 0, 'top': 0, 'bottom': 1}
+
+# Page(s) to open at the start.
+# Type: List of FuzzyUrl, or FuzzyUrl
+c.url.start_pages = 'https://start.duckduckgo.com/'
+
+# A list of patterns that should always be loaded, despite being ad-
+# blocked. Note this whitelists blocked hosts, not first-party URLs. As
+# an example, if `example.org` loads an ad from `ads.example.org`, the
+# whitelisted host should be `ads.example.org`. If you want to disable
+# the adblocker on a given page, use the `content.host_blocking.enabled`
+# setting with a URL pattern instead. Local domains are always exempt
+# from hostblocking.
+# Type: List of UrlPattern
+c.content.host_blocking.whitelist = ['https://analytics.google.com']
+
+# Duration (in milliseconds) to show the tab bar before hiding it when
+# tabs.show is set to 'switching'.
+# Type: Int
+c.tabs.show_switching_delay = 100
+
+# Position of the status bar.
+# Type: VerticalPosition
+# Valid values:
+#   - top
+#   - bottom
+c.statusbar.position = 'bottom'
+
+# Enter insert mode if an editable element is clicked.
+# Type: Bool
+c.input.insert_mode.auto_enter = True
+
+# Background color of an error message.
+# Type: QssColor
+c.colors.messages.error.bg = 'red'
+
+# Width (in pixels) of the scrollbar in the completion window.
+# Type: Int
+c.completion.scrollbar.width = 8
+
+# Enable smooth scrolling for web pages. Note smooth scrolling does not
+# work with the `:scroll-px` command.
+# Type: Bool
+c.scrolling.smooth = True
+
 # Search engines which can be used via the address bar. Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
 # placeholder. The placeholder will be replaced by the search term, use
@@ -187,61 +186,7 @@ c.tabs.title.format = '{index}'
 # used by prepending the search engine name to the search term, e.g.
 # `:open google qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', 's': 'https://stackoverflow.com/search?q={}', 'w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&go=Go&search={}', 'q': 'https://www.qwant.com/?q={}', 'yt': 'https://youtube.com/results?search_query={}', 'g': 'https://google.com/search?q={}', 'd': 'https://duckduckgo.com/?q={}'}
-
-# Minimum width (in pixels) of tabs (-1 for the default minimum size
-# behavior). This setting only applies when tabs are horizontal. This
-# setting does not apply to pinned tabs, unless `tabs.pinned.shrink` is
-# False.
-# Type: Int
-c.tabs.min_width = -1
-
-# Which tab to select when the focused tab is removed.
-# Type: SelectOnRemove
-# Valid values:
-#   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
-#   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
-#   - last-used: Select the previously selected tab.
-c.tabs.select_on_remove = 'next'
-
-# Leave insert mode if a non-editable element is clicked.
-# Type: Bool
-c.input.insert_mode.auto_leave = False
-
-# Width (in pixels or as percentage of the window) of the tab bar if
-# it's vertical.
-# Type: PercOrInt
-c.tabs.width = '4%'
-
-# Padding (in pixels) for the statusbar.
-# Type: Padding
-c.statusbar.padding = {'bottom': 1, 'left': 0, 'right': 0, 'top': 0}
-
-# Default zoom level.
-# Type: Perc
-c.zoom.default = '90%'
-
-# Duration (in milliseconds) to show the tab bar before hiding it when
-# tabs.show is set to 'switching'.
-# Type: Int
-c.tabs.show_switching_delay = 100
-
-# Page(s) to open at the start.
-# Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = 'https://start.duckduckgo.com/'
-
-# Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
-# for a blank page.
-# Type: FuzzyUrl
-c.url.default_page = 'https://start.duckduckgo.com/'
-
-# Enter insert mode if an editable element is clicked.
-# Type: Bool
-c.input.insert_mode.auto_enter = True
-
-# Text color for the keyhint widget.
-# Type: QssColor
-c.colors.keyhint.fg = '#FFFFFF'
+c.url.searchengines = {'w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&go=Go&search={}', 'yt': 'https://youtube.com/results?search_query={}', 'DEFAULT': 'https://google.com/search?q={}', 'q': 'https://www.qwant.com/?q={}', 'd': 'https://duckduckgo.com/?q={}', 'g': 'https://google.com/search?q={}', 's': 'https://stackoverflow.com/search?q={}'}
 
 # When to show favicons in the tab bar.
 # Type: String
@@ -251,29 +196,97 @@ c.colors.keyhint.fg = '#FFFFFF'
 #   - pinned: Show favicons only on pinned tabs.
 c.tabs.favicons.show = 'always'
 
+# Which tab to select when the focused tab is removed.
+# Type: SelectOnRemove
+# Valid values:
+#   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
+#   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
+#   - last-used: Select the previously selected tab.
+c.tabs.select_on_remove = 'next'
+
+# Aliases for commands. The keys of the given dictionary are the
+# aliases, while the values are the commands they map to.
+# Type: Dict
+c.aliases = {'wq': 'quit --save', 'q': 'close', 'wqa': 'quit --save', 'qa': 'quit', 'w': 'session-save'}
+
+# URL parameters to strip with `:yank url`.
+# Type: List of String
+c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+
+# Width (in pixels or as percentage of the window) of the tab bar if
+# it's vertical.
+# Type: PercOrInt
+c.tabs.width = '4%'
+
+# Wrap when changing tabs.
+# Type: Bool
+c.tabs.wrap = True
+
+# How to behave when the last tab is closed.
+# Type: String
+# Valid values:
+#   - ignore: Don't do anything.
+#   - blank: Load a blank page.
+#   - startpage: Load the start page.
+#   - default-page: Load the default page.
+#   - close: Close the window.
+c.tabs.last_close = 'ignore'
+
+# Force pinned tabs to stay at fixed URL.
+# Type: Bool
+c.tabs.pinned.frozen = True
+
+# Font used in the statusbar.
+# Type: Font
+c.fonts.statusbar = '10pt monospace'
+
 # Width (in pixels) of the progress indicator (0 to disable).
 # Type: Int
 c.tabs.indicator.width = 1
 
-# Which categories to show (in which order) in the :open completion.
-# Type: FlagList
+# Background color for hints. Note that you can use a `rgba(...)` value
+# for transparency.
+# Type: QssColor
+c.colors.hints.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 247, 133, 0.8), stop:1 rgba(255, 197, 66, 0.8))'
+
+# Background color of the keyhint widget.
+# Type: QssColor
+c.colors.keyhint.bg = 'rgba(0, 0, 0, 80%)'
+
+# Foreground color of completion widget category headers.
+# Type: QtColor
+c.colors.completion.category.fg = 'white'
+
+# Background color of the completion widget category headers.
+# Type: QssColor
+c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #888888, stop:1 #505050)'
+
+# Font color for the matched part of hints.
+# Type: QssColor
+c.colors.hints.match.fg = 'green'
+
+# Always restore open sites when qutebrowser is reopened.
+# Type: Bool
+c.auto_save.session = True
+
+# Position of the tab bar.
+# Type: Position
 # Valid values:
-#   - searchengines
-#   - quickmarks
-#   - bookmarks
-#   - history
-c.completion.open_categories = ['searchengines', 'quickmarks', 'bookmarks', 'history']
+#   - top
+#   - bottom
+#   - left
+#   - right
+c.tabs.position = 'left'
 
-# Format to use for the window title. The same placeholders like for
-# `tabs.title.format` are defined.
-# Type: FormatString
-c.window.title_format = '{perc}{title}{title_sep}qutebrowser'
-
-# Maximum width (in pixels) of tabs (-1 for no maximum). This setting
-# only applies when tabs are horizontal. This setting does not apply to
-# pinned tabs, unless `tabs.pinned.shrink` is False. This setting may
-# not apply properly if max_width is smaller than the minimum size of
-# tab contents, or smaller than tabs.min_width.
+# Minimum width (in pixels) of tabs (-1 for the default minimum size
+# behavior). This setting only applies when tabs are horizontal. This
+# setting does not apply to pinned tabs, unless `tabs.pinned.shrink` is
+# False.
 # Type: Int
-c.tabs.max_width = -1
+c.tabs.min_width = -1
 
+# Bindings for normal mode
+config.bind(';M', 'spawn --detach smplayer {url}')
+config.bind(';m', 'hint links spawn smplayer {hint-url}')
+config.bind('j', 'scroll down')
+config.bind('k', 'scroll up')

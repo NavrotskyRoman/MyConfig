@@ -57,7 +57,7 @@ font-1 = FontAwesome:size=10;1
 font-2 = siji:pixelsize=10;1
 
 ;STATUS-BAR!!!
-modules-left = i3 
+modules-left = 
 modules-center = cpu memory gpu cputemp gputemp cpu_fan network
 modules-right = info-hackspeed wlan battery xkeyboard date 
 ;STATUS-BAR!!!
@@ -86,7 +86,7 @@ tray-position = none
 monitor=LVDS-1-1
 bottom=true
 width = 100%
-height = 15
+height = 20
 radius = 3.0
 fixed-center = true
 
@@ -110,7 +110,7 @@ font-1 = FontAwesome:size=10;1
 font-2 = siji:pixelsize=10;1
 
 ;DOWN-BAR!!!
-modules-left = 
+modules-left = i3
 modules-center =
 modules-right = volume
 ;DOWN-BAR!!!

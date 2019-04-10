@@ -54,6 +54,101 @@ bindsym $mod+Shift+F10 exec pactl set-sink-volume 0 100%
 
 #Monitors
 bindsym $mod+Shift+s exec ~/.config/i3/i3-display-swap.sh
+#Connect monitor left
+#Disconnect monitor get it main
+
+#Mouse Control
+
+#bindsym $mod+mod1+u exec xdotool mousemove_relative --sync 0 0 click 4
+#bindsym $mod+mod1+i exec xdotool mousemove_relative --sync 0 0 click 5
+
+mode "mouse"{
+  set $slow 5
+	set $quick 15
+	set $fast 50
+
+  #MouseHotSqures
+  #Top
+  bindsym $mod+1 exec xdotool mousemove 227 128
+  bindsym $mod+2 exec xdotool mousemove 681 128
+  bindsym $mod+3 exec xdotool mousemove 1135 128
+
+  #Middle
+  bindsym $mod+Shift+1 exec xdotool mousemove 227 384
+  bindsym $mod+Shift+2 exec xdotool mousemove 681 384
+  bindsym $mod+Shift+3 exec xdotool mousemove 1135 384
+
+  #Middle
+  bindsym $mod+8 exec xdotool mousemove 227 640
+  bindsym $mod+9 exec xdotool mousemove 681 640
+  bindsym $mod+0 exec xdotool mousemove 1135 640
+  bindsym $mod+Shift+8 exec xdotool mousemove 227 640
+  bindsym $mod+Shift+9 exec xdotool mousemove 681 640
+  bindsym $mod+Shift+0 exec xdotool mousemove 1135 640
+
+  # Mouse movement (slow) -- vim keybindings
+  bindsym h exec xdotool mousemove_relative -- -$slow 0
+	bindsym j exec xdotool mousemove_relative 0 $slow
+	bindsym k exec xdotool mousemove_relative -- 0 -$slow
+	bindsym l exec xdotool mousemove_relative $slow 0
+
+
+  # Mouse movement (quicker) -- vim keybindings
+	bindsym Shift+h exec xdotool mousemove_relative -- -$quick 0
+	bindsym Shift+j exec xdotool mousemove_relative 0 $quick
+	bindsym Shift+k exec xdotool mousemove_relative -- 0 -$quick
+	bindsym Shift+l exec xdotool mousemove_relative $quick 0
+	bindsym $mod+h exec xdotool mousemove_relative -- -$quick 0
+	bindsym $mod+j exec xdotool mousemove_relative 0 $quick
+	bindsym $mod+k exec xdotool mousemove_relative -- 0 -$quick
+	bindsym $mod+l exec xdotool mousemove_relative $quick 0
+
+  
+  # Mouse movement (fast) -- vim keybindings
+
+	bindsym Shift+$mod+h exec xdotool mousemove_relative -- -$fast 0
+	bindsym Shift+$mod+j exec xdotool mousemove_relative 0 $fast
+	bindsym Shift+$mod+k exec xdotool mousemove_relative -- 0 -$fast
+	bindsym Shift+$mod+l exec xdotool mousemove_relative $fast 0
+
+# Left Click
+	bindsym f exec xdotool click 1
+
+	# Middle Click
+	bindsym d exec xdotool click 2
+
+	# Right Click
+	bindsym s exec xdotool click 3
+
+	# Left Click-and-drag
+	bindsym Shift+f exec xdotool mousedown 1
+
+	# Middle Click-and-drag 
+	bindsym Shift+d exec xdotool mousedown 2
+
+	# Right Click-and-drag
+	bindsym Shift+s exec xdotool mousedown 3
+
+	# Left Drag release
+	bindsym $mod+f exec xdotool mouseup 1
+
+	# Middle Drag release
+	bindsym $mod+d exec xdotool mouseup 2
+
+	# Right Drag release
+	bindsym $mod2+s exec xdotool mouseup 3
+  
+  # Mouse wheel
+  bindsym $mod+i exec xdotool click 4
+	bindsym $mod+u exec xdotool click 5
+
+# return to normal keybindings -- IMPORTANT!!
+	bindsym $mod+Escape mode "default"
+}
+
+bindsym $mod+m mode "mouse"
+
+
 
 client.focused #00C1FF #00C1FF #000088 #00C1FF 
 
