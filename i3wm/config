@@ -53,6 +53,8 @@ bindsym $mod+F10 exec pactl set-sink-volume 0 0%
 bindsym $mod+Shift+F10 exec pactl set-sink-volume 0 100% 
 
 #Monitors
+bindsym $mod+mod1+m exec xrandr --output VGA-1-1 --auto --left-of LVDS-1-1
+bindsym $mod+mod1+Shift+m exec xrandr --auto && xrandr --output VGA-1-1 --off
 bindsym $mod+Shift+s exec ~/.config/i3/i3-display-swap.sh
 #Connect monitor left
 #Disconnect monitor get it main
@@ -63,9 +65,9 @@ bindsym $mod+Shift+s exec ~/.config/i3/i3-display-swap.sh
 #bindsym $mod+mod1+i exec xdotool mousemove_relative --sync 0 0 click 5
 
 mode "mouse"{
-  set $slow 5
-	set $quick 15
-	set $fast 50
+  set $slow 7
+	set $quick 75
+	set $fast 35
 
   #MouseHotSqures
   #Top
@@ -141,6 +143,8 @@ mode "mouse"{
   # Mouse wheel
   bindsym $mod+i exec xdotool click 4
 	bindsym $mod+u exec xdotool click 5
+  bindsym i exec xdotool click 4
+	bindsym u exec xdotool click 5
 
 # return to normal keybindings -- IMPORTANT!!
 	bindsym $mod+Escape mode "default"
