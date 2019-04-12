@@ -31,7 +31,8 @@ level-8 = #f90000
 ################################################################
 ################################################################
 [bar/default]
-monitor=LVDS-1-1
+;monitor=LVDS-1-1
+monitor=${env:MONITOR:}
 width = 100%
 height = 25
 radius = 3.0
@@ -83,7 +84,7 @@ tray-position = none
 ################################################################
 
 [bar/down]
-monitor=LVDS-1-1
+monitor=${env:MONITOR:}
 bottom=true
 width = 100%
 height = 20

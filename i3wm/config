@@ -71,10 +71,6 @@ bindsym $mod+Shift+s exec ~/.config/i3/i3-display-swap.sh
 #bindsym $mod+mod1+i exec xdotool mousemove_relative --sync 0 0 click 5
 
 mode "mouse"{
-  set $slow 7
-	set $quick 75
-	set $fast 35
-
   #MouseHotSqures
   #Top
   bindsym $mod+1 exec xdotool mousemove 227 128
@@ -94,30 +90,40 @@ mode "mouse"{
   bindsym $mod+Shift+9 exec xdotool mousemove 681 640
   bindsym $mod+Shift+0 exec xdotool mousemove 1135 640
 
+  #Mod+Shift 
+    set $slow 7
+  #No Keys 
+  	set $quick 35
+  #MOD+Keys 
+  	set $fast 125
+  #Shift+Keys 
+  	set $super_fast 80
+  
   # Mouse movement (slow) -- vim keybindings
-  bindsym h exec xdotool mousemove_relative -- -$slow 0
-	bindsym j exec xdotool mousemove_relative 0 $slow
-	bindsym k exec xdotool mousemove_relative -- 0 -$slow
-	bindsym l exec xdotool mousemove_relative $slow 0
+  bindsym $mod+Shift+h exec xdotool mousemove_relative -- -$slow 0
+	bindsym $mod+Shift+j exec xdotool mousemove_relative 0 $slow
+	bindsym $mod+Shift+k exec xdotool mousemove_relative -- 0 -$slow
+	bindsym $mod+Shift+l exec xdotool mousemove_relative $slow 0
 
 
   # Mouse movement (quicker) -- vim keybindings
-	bindsym Shift+h exec xdotool mousemove_relative -- -$quick 0
-	bindsym Shift+j exec xdotool mousemove_relative 0 $quick
-	bindsym Shift+k exec xdotool mousemove_relative -- 0 -$quick
-	bindsym Shift+l exec xdotool mousemove_relative $quick 0
-	bindsym $mod+h exec xdotool mousemove_relative -- -$quick 0
-	bindsym $mod+j exec xdotool mousemove_relative 0 $quick
-	bindsym $mod+k exec xdotool mousemove_relative -- 0 -$quick
-	bindsym $mod+l exec xdotool mousemove_relative $quick 0
+	bindsym h exec xdotool mousemove_relative -- -$quick 0
+	bindsym j exec xdotool mousemove_relative 0 $quick
+	bindsym k exec xdotool mousemove_relative -- 0 -$quick
+	bindsym l exec xdotool mousemove_relative $quick 0
 
   
   # Mouse movement (fast) -- vim keybindings
+	bindsym $mod+h exec xdotool mousemove_relative -- -$fast 0
+	bindsym $mod+j exec xdotool mousemove_relative 0 $fast
+	bindsym $mod+k exec xdotool mousemove_relative -- 0 -$fast
+	bindsym $mod+l exec xdotool mousemove_relative $fast 0
 
-	bindsym Shift+$mod+h exec xdotool mousemove_relative -- -$fast 0
-	bindsym Shift+$mod+j exec xdotool mousemove_relative 0 $fast
-	bindsym Shift+$mod+k exec xdotool mousemove_relative -- 0 -$fast
-	bindsym Shift+$mod+l exec xdotool mousemove_relative $fast 0
+  # Mouse movement (super-fast) -- vim keybindings
+	bindsym Shift+h exec xdotool mousemove_relative -- -$super_fast 0
+	bindsym Shift+j exec xdotool mousemove_relative 0 $super_fast
+	bindsym Shift+k exec xdotool mousemove_relative -- 0 -$super_fast
+	bindsym Shift+l exec xdotool mousemove_relative $super_fast 0
 
 # Left Click
 	bindsym f exec xdotool click 1
@@ -155,6 +161,7 @@ mode "mouse"{
 # return to normal keybindings -- IMPORTANT!!
 	bindsym Escape mode "default"
 	bindsym $mod+Escape mode "default"
+	bindsym $mod+m mode "default"
 }
 
 bindsym $mod+m mode "mouse"
