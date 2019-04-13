@@ -44,6 +44,7 @@ bindsym $mod+mod1+2 exec /home/rodjer113/.Telegram/Telegram
 bindsym $mod+mod1+3 exec gnome-terminal -x htop
 bindsym $mod+mod1+4 exec gnome-terminal -x ranger
 bindsym $mod+mod1+p exec smplayer
+bindsym $mod+mod1+o exec xdg-open .
 #Reminder to me = Add to start myplaylist
 
 #TODO binds

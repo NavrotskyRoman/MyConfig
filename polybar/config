@@ -54,12 +54,12 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = fixed:pixelsize=10;1
-font-1 = FontAwesome:size=10;1
+font-1 = FontAwesome:size=12;2
 font-2 = siji:pixelsize=10;1
 
 ;STATUS-BAR!!!
 modules-left = 
-modules-center = cpu memory gpu cputemp gputemp cpu_fan network
+modules-center = cpu memory gpu cputemp gputemp cpu_fan networkdownspeed networkspeed networksignal
 modules-right = info-hackspeed wlan battery xkeyboard date 
 ;STATUS-BAR!!!
 
@@ -134,10 +134,43 @@ tray-position = right
 ;scroll-down = i3wm-wsprev
 ############################################################
 
+
+[module/networkspeed]
+type = internal/network
+interface = wlp3s0f0
+label-connected = " %upspeed%"
+format-connected = <label-connected>
+format-connected-prefix=""
+format-connected-prefix-foreground=#0000FF
+format-connected-foreground=${colors.foreground}
+format-connected-backgroung=${colors.background}
+format-connected-underline=#0000FF
+
+[module/networkdownspeed]
+type = internal/network
+interface = wlp3s0f0
+label-connected = " %downspeed%"
+format-connected = <label-connected>
+format-connected-prefix=""
+format-connected-prefix-foreground=#00FF00
+format-connected-foreground=${colors.foreground}
+format-connected-backgroung=${colors.background}
+format-connected-underline=#00FF00
+
+[module/networksignal]
+type = internal/network
+interface = wlp3s0f0
+label-connected = " %signal% %"
+format-connected = <label-connected>
+format-connected-prefix=" "
+format-connected-prefix-foreground=#9842f4
+format-connected-foreground=${colors.foreground}
+format-connected-backgroung=${colors.background}
+format-connected-underline=#9842f4
+
 [module/network]
 type = internal/network
 interface = wlp3s0f0
-label-underline = ${colors.level-3}
 
 ; Seconds to sleep between updates
 ; Default: 1
@@ -190,7 +223,7 @@ format-packetloss = <animation-packetloss> <label-connected>
 ;   %linkspeed% [wired]
 
 ; Default: %ifname% %local_ip%
-label-connected =DN:%downspeed:min:max%  |  UP:%upspeed:min:max%  |  %signal% %
+label-connected = %downspeed:min:max%   %upspeed:min:max%   %signal% %
 label-connected-foreground = #eefafafa
 
 ; Default: (none)
