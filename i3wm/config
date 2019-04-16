@@ -37,7 +37,6 @@ bindsym $mod+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+Shift+minus scratchpad show floating toggle
 
-
 #FastBindigs
 bindsym $mod+mod1+1 exec qutebrowser/.venv/bin/python3 -m qutebrowser
 bindsym $mod+mod1+2 exec /home/rodjer113/.Telegram/Telegram
@@ -45,6 +44,8 @@ bindsym $mod+mod1+3 exec gnome-terminal -x htop
 bindsym $mod+mod1+4 exec gnome-terminal -x ranger
 bindsym $mod+mod1+p exec smplayer
 bindsym $mod+mod1+o exec xdg-open .
+bindsym $mod+mod1+g exec peek 
+
 #Reminder to me = Add to start myplaylist
 
 #TODO binds

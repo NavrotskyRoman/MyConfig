@@ -7,43 +7,7 @@ Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
 Plug 'edkolev/tmuxline.vim'
 Plug 'nathanaelkane/vim-indent-guides'
-
-"Themes
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
-"Plug 'sjl/badwolf'
-
-"Language
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'juleswang/css.vim'
-Plug 'othree/html5.vim'
-
-"Faster
-Plug 'Valloric/YouCompleteMe'
-Plug 'mattn/emmet-vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
-Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
-Plug 'tomtom/tcomment_vim'
-
-"Other
-"Plug 'aserebryakov/vim-todo-lists'
-
-call plug#end()
-
-"Some setting for plugins
-call plug#begin('~/.vim/plugged')
-
-"System/GUI
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
-Plug 'ap/vim-css-color'
-Plug 'tpope/vim-fugitive'
-Plug 'edkolev/tmuxline.vim'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'gregsexton/MatchTag'
 
 "Themes
 Plug 'vim-airline/vim-airline'
