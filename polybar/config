@@ -1,10 +1,11 @@
-
 [settings]
 compositing-background = over
 compositing-foreground = over
 compositing-overline = over
 compositing-underline = over
 compositing-border = over
+wlan-interface=wlp3s0f0
+;wlan-interface=wlxa0f3c10c3bad
 
 [colors]
 ;background = ${xrdb:color0:#222}
@@ -137,7 +138,7 @@ tray-position = right
 
 [module/networkspeed]
 type = internal/network
-interface = wlp3s0f0
+interface = ${settings.wlan-interface}
 label-connected = " %upspeed%"
 format-connected = <label-connected>
 format-connected-prefix=""
@@ -148,7 +149,7 @@ format-connected-underline=#0000FF
 
 [module/networkdownspeed]
 type = internal/network
-interface = wlp3s0f0
+interface = ${settings.wlan-interface}
 label-connected = " %downspeed%"
 format-connected = <label-connected>
 format-connected-prefix=""
@@ -159,7 +160,7 @@ format-connected-underline=#00FF00
 
 [module/networksignal]
 type = internal/network
-interface = wlp3s0f0
+interface = ${settings.wlan-interface}
 label-connected = " %signal% %"
 format-connected = <label-connected>
 format-connected-prefix=" "
@@ -541,7 +542,7 @@ ramp-free-7 = █
 
 [module/wlan]
 type = internal/network
-interface = wlp3s0f0
+interface = ${settings.wlan-interface}
 interval = 3.0
 
 format-connected =  <label-connected>
