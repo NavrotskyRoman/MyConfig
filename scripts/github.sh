@@ -29,9 +29,9 @@
  git commit -m "$DATE" >> $LOG 2>&1
  git push >> $LOG 2>&1
  echo "Done!\n" >> $LOG 
- notify-send "$LOG"
 
  cat $LOG
+ notify-send "$(cat ~/scripts/configs/log.txt)"
  echo "Press what you want!"
  read any_key
 #read "-t5" any_key
