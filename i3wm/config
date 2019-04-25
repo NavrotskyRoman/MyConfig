@@ -14,6 +14,7 @@ exec_always --no-startup-id feh --bg-scale /home/rodjer113/pictures/qwe_download
 exec ~/scripts/todo_run.sh
 exec ~/scripts/github.sh
 exec nm-applet
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 #exec --no-startup-id $HOME/.config/polybar/polybar.sh
 
 #exec killall -q notify-osd

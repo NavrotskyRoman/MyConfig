@@ -6,6 +6,7 @@
  cp ~/scripts/todo_run.sh ~/scripts/configs/scripts/todo_run.sh 
 
  cp ~/.config/i3/config ~/scripts/configs/i3wm/config
+ cp ~/.config/dunst/dunstrc ~/scripts/configs/dunst/dunstrc
 
  cp ~/.config/polybar/config ~/scripts/configs/polybar/config
  cp ~/.config/polybar/polybar.sh ~/scripts/configs/polybar/polybar.sh
@@ -28,6 +29,7 @@
  git commit -m "$DATE" >> $LOG 2>&1
  git push >> $LOG 2>&1
  echo "Done!\n" >> $LOG 
+ notify-send "$LOG"
 
  cat $LOG
  echo "Press what you want!"
