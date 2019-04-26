@@ -2,6 +2,7 @@ alias rst='shutdown -r -t 0'
 alias out='shutdown -h -t 0'
 alias sleep='sudo pm-suspend'
 alias list='vim ~/rmr/todo'
+alias alert='~/scripts/dunst.sh'
 
 alias server='ssh -i /home/rodjer113/.ssh/my-ssh-key navrocky.roman@35.195.39.2'
 alias qb='qutebrowser/.venv/bin/python3 -m qutebrowser'
