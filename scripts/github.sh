@@ -22,11 +22,11 @@
 cd ~/scripts/configs  
 
 LOGG=$( date ) 
-LOGG="$LOGG \n\n $(git diff 2>&1)"
-LOGG="$LOGG \n\n $(backup 2>&1)"
-LOGG="$LOGG \n\n $(git add . 2>&1)"
-LOGG="$LOGG \n\n $(git commit -m "$DATE" 2>&1)"
-LOGG="$LOGG \n\n $(git push 2>&1)"
+LOGG="$LOGG \n $(git diff 2>&1)"
+LOGG="$LOGG \n $(backup 2>&1)"
+LOGG="$LOGG \n $(git add . 2>&1)"
+LOGG="$LOGG \n $(git commit -m "$DATE" 2>&1)"
+LOGG="$LOGG \n $(git push 2>&1)"
 
  echo $LOGG >> $LOG 2>&1
  notify-send "$LOGG"
