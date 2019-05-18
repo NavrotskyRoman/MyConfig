@@ -17,6 +17,7 @@
  cp ~/.zshrc ~/scripts/configs/zsh/zshrc
  cp ~/.config/qutebrowser/config.py ~/scripts/configs/qutebrowser/config.py
  cp ~/.tmux.conf ~/scripts/configs/tmux/tmux.conf
+ cp ~/Wallpaper/wallpaper.sh ~/scripts/configs/wallpaper.sh
 }
 
  cd ~/scripts/configs  
@@ -30,8 +31,7 @@
  git push >> $LOG 2>&1
  echo "Done!\n" >> $LOG 
 
- cat $LOG
- notify-send "$(cat ~/scripts/configs/log.txt)"
+ notify-send $LOG
  echo "Press what you want!"
  read any_key
 #read "-t5" any_key
