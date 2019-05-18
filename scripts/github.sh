@@ -19,16 +19,16 @@
  cp ~/Wallpaper/wallpaper.sh ~/scripts/configs/wallpaper.sh
 }
 
- cd ~/scripts/configs  
+cd ~/scripts/configs  
 
-LOGG=$(date)
-LOGG="$LOGG \n\n $(git diff)"
-LOGG="$LOGG \n\n $(backup)"
-LOGG="$LOGG \n\n $(git add .)"
-LOGG="$LOGG \n\n $(git commit -m "$DATE" )"
-LOGG="$LOGG \n\n $(git push)"
+LOGG=$( date ) 
+LOGG="$LOGG \n\n $(git diff 2>&1)"
+LOGG="$LOGG \n\n $(backup 2>&1)"
+LOGG="$LOGG \n\n $(git add . 2>&1)"
+LOGG="$LOGG \n\n $(git commit -m "$DATE" 2>&1)"
+LOGG="$LOGG \n\n $(git push 2>&1)"
 
- notify-send $LOGG
+ echo $LOGG >> $LOG 2>&1
+ notify-send "$LOGG"
  echo "Press what you want!"
  read any_key
-
