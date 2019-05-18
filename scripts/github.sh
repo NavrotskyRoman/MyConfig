@@ -22,12 +22,13 @@
 cd ~/scripts/configs  
 
 LOGG="$( date ) "
-LOGG="$LOGG \n $(git diff 2>&1)"
-LOGG="$LOGG \n $(backup 2>&1)"
-LOGG="$LOGG \n $(git add . 2>&1)"
-LOGG="$LOGG \n $(git commit -m "$DATE" 2>&1)"
-LOGG="$LOGG \n $(git push 2>&1)"
-echo "Done!\n" >> $LOG 
+LOGG="$LOGG \n git diff: $(git diff 2>&1)"
+LOGG="$LOGG \n backup: $(backup 2>&1)"
+LOGG="$LOGG \n git add: $(git add . 2>&1)"
+LOGG="$LOGG \n git commit: $(git commit -m "$DATE" 2>&1)"
+LOGG="$LOGG \n git push: $(git push 2>&1)"
+LOGG="$LOGG \n Done! \n"
+echo  >> $LOG 
 
  echo $LOGG
  echo $LOGG >> $LOG 2>&1
