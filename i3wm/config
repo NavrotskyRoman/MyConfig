@@ -11,8 +11,9 @@ smart_borders on
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle"
 exec_always --no-startup-id compton --config ~/.config/i3/compton.conf
 #exec_always --no-startup-id feh --bg-scale ~/Images/Wallpaper/1.jpg
+exec_always --no-startup-id feh --bg-scale ~/Images/Wallpaper/Neurons_2.gif
 exec_always --no-startup-id killall back4.sh 
-exec_always --no-startup-id ~/.config/foo-Wallpaper-Feh-Gif/back4.sh 0.01 ~/Images/Wallpaper/Neurons.gif
+exec_always --no-startup-id ~/.config/foo-Wallpaper-Feh-Gif/back4.sh 0.05 ~/Images/Wallpaper/Neurons_2.gif
 
 exec ~/scripts/todo_run.sh
 exec ~/scripts/github.sh
