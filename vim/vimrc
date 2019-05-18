@@ -46,8 +46,8 @@ let g:javascript_plugin_jsdoc = 1
 "let g:VimTodoListsDatesEnabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,javascript.jsx EmmetInstall
+let g:user_emmet_install_global = 1
+"autocmd FileType html,css,js,jsx,javascript.jsx EmmetInstall
 
 "Settings VIM
 set guifont=Font\ Awesome\ 14
@@ -135,8 +135,8 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
  "    vnoremap <leader>6 :norm ^x<cr>
 
 "Emmet         
-let g:user_emmet_expandabbr_key = '<ALT-\>'
-
+"let g:user_emmet_expandabbr_key = '<M-,>'
+let g:user_emmet_leader_key=','
 "Other themes
 filetype plugin indent on
 
