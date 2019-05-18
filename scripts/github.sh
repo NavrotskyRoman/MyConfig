@@ -1,3 +1,4 @@
+
  LOG=~/scripts/configs/log.txt
  DATE=$( date )
  backup () {
@@ -16,20 +17,23 @@
  cp ~/.zshrc ~/scripts/configs/zsh/zshrc
  cp ~/.config/qutebrowser/config.py ~/scripts/configs/qutebrowser/config.py
  cp ~/.tmux.conf ~/scripts/configs/tmux/tmux.conf
- cp ~/Wallpaper/wallpaper.sh ~/scripts/configs/wallpaper.sh
+ cp ~/Wallpaper/wallpaper.sh ~/scripts/other/wallpaper.sh
 }
 
-cd ~/scripts/configs  
+ cd ~/scripts/configs  
 
-LOGG="$( date ) "
-LOGG="$LOGG  $(git diff 2>&1)"
-LOGG="$LOGG  $(backup 2>&1)"
-LOGG="$LOGG  $(git add . 2>&1)"
-LOGG="$LOGG  $(git commit -m "$DATE" 2>&1)"
-LOGG="$LOGG  $(git push 2>&1)"
+ date >> $LOG 
+ git diff
 
- echo $LOGG
- echo $LOGG >> $LOG 2>&1
- notify-send "$LOGG"
+ backup >> $LOG 2>&1
+ git add . >> $LOG 2>&1
+ git commit -m "$DATE" >> $LOG 2>&1
+ git push >> $LOG 2>&1
+ echo "Done!\n" >> $LOG 
+
+ cat $LOG
+ notify-send "$(cat ~/scripts/configs/log.txt)"
  echo "Press what you want!"
  read any_key
+#read "-t5" any_key
+
