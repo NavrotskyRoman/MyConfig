@@ -9,8 +9,10 @@ smart_borders on
 #disable all gaps whenever only one container is on the current workspace
 #smart_gaps inverse_outer  
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle"
-exec_always compton
-exec_always --no-startup-id feh --bg-scale /home/rodjer113/pictures/qwe_download.jpeg 
+exec_always --no-startup-id compton --config ~/.config/i3/compton.conf
+#exec_always --no-startup-id feh --bg-scale /home/rodjer113/pictures/qwe_download.jpeg 
+#exec_always --no-startup-id killall back4.sh 
+#exec_always --no-startup-id ~/.config/foo-Wallpaper-Feh-Gif/back4.sh 0.01 ~/Images/Wallpaper/Blockchin.gif
 exec ~/scripts/todo_run.sh
 exec ~/scripts/github.sh
 exec nm-applet
