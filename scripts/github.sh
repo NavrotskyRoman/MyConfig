@@ -1,4 +1,3 @@
-
  LOG=~/scripts/configs/log.txt
  DATE=$( date )
  backup () {
@@ -22,17 +21,14 @@
 
  cd ~/scripts/configs  
 
- date >> $LOG 
- git diff
+LOGG=$(date)
+LOGG="$LOGG \n\n $(git diff)"
+LOGG="$LOGG \n\n $(backup)"
+LOGG="$LOGG \n\n $(git add .)"
+LOGG="$LOGG \n\n $(git commit -m "$DATE" )"
+LOGG="$LOGG \n\n $(git push)"
 
- backup >> $LOG 2>&1
- git add . >> $LOG 2>&1
- git commit -m "$DATE" >> $LOG 2>&1
- git push >> $LOG 2>&1
- echo "Done!\n" >> $LOG 
-
- notify-send $LOG
+ notify-send $LOGG
  echo "Press what you want!"
  read any_key
-#read "-t5" any_key
 
