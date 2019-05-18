@@ -21,13 +21,14 @@
 
 cd ~/scripts/configs  
 
-LOGG=$( date ) 
-LOGG="$LOGG \n $(git diff 2>&1)"
-LOGG="$LOGG \n $(backup 2>&1)"
-LOGG="$LOGG \n $(git add . 2>&1)"
-LOGG="$LOGG \n $(git commit -m "$DATE" 2>&1)"
-LOGG="$LOGG \n $(git push 2>&1)"
+LOGG="$( date ) "
+LOGG="$LOGG  $(git diff 2>&1)"
+LOGG="$LOGG  $(backup 2>&1)"
+LOGG="$LOGG  $(git add . 2>&1)"
+LOGG="$LOGG  $(git commit -m "$DATE" 2>&1)"
+LOGG="$LOGG  $(git push 2>&1)"
 
+ echo $LOGG
  echo $LOGG >> $LOG 2>&1
  notify-send "$LOGG"
  echo "Press what you want!"
