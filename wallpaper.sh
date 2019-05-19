@@ -6,12 +6,10 @@ do
     $(kill -9 $m)
   fi
 done;
-[ "$#" -lt "1" ] || [ "$#" -gt "2" ] && {  echo -e "ERROR : args number invalid \n $0 speed /path/name.gif" ; echo "try 0.010 as speed" ; exit 1 ; }
+[ "$#" -lt "1" ] || [ "$#" -gt "2" ] && {  echo -e "ERROR : args number invalid \n $0 speed /path/name.gif" ; echo "try add 0.010" ; exit 1 ; }
 dir=~/Wallpaper
 speed=$1
 name=$2
-
-[[ "$name" == "" ]] && { name=$speed ; speed=${name##*-} ; }
 
 hash=`md5sum $name | cut -f1 -d" "`
 
