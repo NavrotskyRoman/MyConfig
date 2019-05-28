@@ -46,12 +46,16 @@ bindsym $mod+Shift+minus scratchpad show floating toggle
 bindsym $mod+mod1+1 exec qutebrowser/.venv/bin/python3 -m qutebrowser
 bindsym $mod+mod1+2 exec /home/rodjer113/.Telegram/Telegram
 bindsym $mod+mod1+3 exec gnome-terminal -x htop
-bindsym $mod+mod1+4 exec gnome-terminal -x ranger
+bindsym $mod+mod1+4 exec gnome-terminal -x sudo iftop -i wlp3s0f0
 bindsym $mod+mod1+5 exec /home/rodjer113/Games/flashplayer
 bindsym $mod+mod1+p exec smplayer
 bindsym $mod+mod1+o exec xdg-open .
 bindsym $mod+mod1+g exec peek 
 bindsym $mod+mod1+w exec cinnamon-control-center
+bindsym $mod+F1 exec ~/Wallpaper/wallpaper.sh 0.035 ~/Images/Wallpaper/Neurons.mp4
+bindsym $mod+F2 exec ~/.config/polybar/polybar.sh
+bindsym $mod+Shift+F2 exec killall polybar
+bindsym $mod+Shift+F1 exec killall wallpaper.sh
 
 #Reminder to me = Add to start myplaylist
 
