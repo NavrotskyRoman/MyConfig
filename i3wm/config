@@ -110,7 +110,7 @@ mode "mouse"{
   #MOD+Keys 
   	set $fast 125
   #Shift+Keys 
-  	set $super_fast 80
+  	set $super_fastt 80
   
   # Mouse movement (slow) -- vim keybindings
   bindsym $mod+Shift+h exec xdotool mousemove_relative -- -$slow 0
