@@ -181,7 +181,7 @@ interval = 1.0
 ; A value of 0 disables the feature
 ; NOTE: Experimental (needs more testing)
 ; Default: 0
-;ping-interval = 3
+ping-interval = 1
 
 ; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
 ; Minimum output width of upload/download rate
