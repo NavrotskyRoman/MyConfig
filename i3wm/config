@@ -61,6 +61,7 @@ bindsym $mod+Shift+F1 exec killall wallpaper.sh
 
 #TODO binds
 #bindsym $mod+mod1+8 exec x-terminal-emulator -e vim /home/rodjer113/MyFiles/1_Programming/Sites/TODO/index.html
+bindsym $mod+mod1+8 exec /home/rodjer113/dbeaver/dbeaver
 bindsym $mod+mod1+9 exec gnome-terminal --working-directory=/home/rodjer113/MyFiles/1_Programming/Sites/TODO/todo/src
 bindsym $mod+mod1+0 exec /home/rodjer113/MyFiles/1_Programming/Sites/TODO/nw
 bindsym $mod+mod1+b exec gnome-terminal -x /home/rodjer113/scripts/github.sh
