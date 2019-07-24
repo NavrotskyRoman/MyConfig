@@ -131,7 +131,7 @@ c.colors.messages.error.bg = 'red'
 # setting with a URL pattern instead. Local domains are always exempt
 # from hostblocking.
 # Type: List of UrlPattern
-c.content.host_blocking.whitelist = ['https://analytics.google.com']
+c.content.host_blocking.whitelist = ['https://analytics.google.com', 'https://autopride.kiev.ua']
 
 # Font used in the tab bar.
 # Type: QtFont
