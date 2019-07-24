@@ -3,7 +3,8 @@
 set $mod Mod4
 
 for_window [class="^.*"] border pixel 2 
-gaps outer 15  
+#new_window 1pixel  if windows have title bar
+gaps outer 15 
 
 smart_borders on
 #disable all gaps whenever only one container is on the current workspace
