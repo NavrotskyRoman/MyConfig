@@ -9,6 +9,8 @@ gaps outer 15
 smart_borders on
 #disable all gaps whenever only one container is on the current workspace
 #smart_gaps inverse_outer  
+
+exec_always --no-startup-id "$HOME/.config/conky/conky_start.sh"
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle"
 exec_always --no-startup-id compton --config ~/.config/i3/compton.conf
 #exec_always --no-startup-id feh --bg-scale ~/Images/Wallpaper/1.jpg
@@ -350,7 +352,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
