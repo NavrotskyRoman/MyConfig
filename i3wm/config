@@ -18,7 +18,7 @@ exec_always --no-startup-id feh --bg-scale ~/Images/Wallpaper/Neurons_2.png
 #exec_always --no-startup-id ~/Wallpaper/wallpaper.sh 0.035 ~/Images/Wallpaper/Neurons.mp4
 #exec_always --no-startup-id ~/Wallpaper/wallpaper.sh 0.03 ~/Images/Wallpaper/Neurons_long_version.mp4
 
-exec ~/scripts/todo_run.sh
+#exec ~/scripts/todo_run.sh
 exec ~/scripts/github.sh
 #exec nm-applet
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
