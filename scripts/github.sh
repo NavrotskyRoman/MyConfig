@@ -13,6 +13,7 @@
  cp ~/.config/polybar/scripts/gpu_usage.sh ~/scripts/configs/polybar/gpu_usage.sh 
 
  cp ~/.vimrc ~/scripts/configs/vim/vimrc
+ cp ~/.config/conky/conky.conf ~/scripts/configs/conky/conky.conf
  cp ~/.zshrc ~/scripts/configs/zsh/zshrc
  cp ~/.config/qutebrowser/config.py ~/scripts/configs/qutebrowser/config.py
  cp ~/.tmux.conf ~/scripts/configs/tmux/tmux.conf

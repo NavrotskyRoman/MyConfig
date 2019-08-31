@@ -13,6 +13,7 @@ smart_borders on
 exec_always --no-startup-id "$HOME/.config/conky/conky_start.sh"
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle"
 exec_always --no-startup-id compton --config ~/.config/i3/compton.conf
+exec_always --no-startup-id dunst -config ./config/dunst/dunstrc
 #exec_always --no-startup-id feh --bg-scale ~/Images/Wallpaper/1.jpg
 exec_always --no-startup-id feh --bg-scale ~/Images/Wallpaper/Neurons_2.png
 #exec_always --no-startup-id ~/Wallpaper/wallpaper.sh 0.035 ~/Images/Wallpaper/Neurons.mp4
