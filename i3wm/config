@@ -56,6 +56,7 @@ bindsym $mod+mod1+p exec smplayer
 bindsym $mod+mod1+o exec xdg-open .
 bindsym $mod+mod1+g exec peek 
 bindsym $mod+mod1+w exec cinnamon-control-center
+bindsym $mod+mod1+e exec nmcli radio wifi off && nmcli radio wifi on 
 bindsym $mod+F1 exec ~/Wallpaper/wallpaper.sh 0.035 ~/Images/Wallpaper/Neurons.mp4
 bindsym $mod+F2 exec ~/.config/polybar/polybar.sh
 bindsym $mod+Shift+F2 exec killall polybar

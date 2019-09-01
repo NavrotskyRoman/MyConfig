@@ -12,8 +12,11 @@
  cp ~/.config/polybar/scripts/info-hackspeed.sh ~/scripts/configs/polybar/info-hackspeed.sh 
  cp ~/.config/polybar/scripts/gpu_usage.sh ~/scripts/configs/polybar/gpu_usage.sh 
 
- cp ~/.vimrc ~/scripts/configs/vim/vimrc
  cp ~/.config/conky/conky.conf ~/scripts/configs/conky/conky.conf
+ cp ~/.config/conky/conky2.conf ~/scripts/configs/conky/conky2.conf
+ cp ~/.config/conky/conky_start.sh ~/scripts/configs/conky/conky_start.sh
+
+ cp ~/.vimrc ~/scripts/configs/vim/vimrc
  cp ~/.zshrc ~/scripts/configs/zsh/zshrc
  cp ~/.config/qutebrowser/config.py ~/scripts/configs/qutebrowser/config.py
  cp ~/.tmux.conf ~/scripts/configs/tmux/tmux.conf
