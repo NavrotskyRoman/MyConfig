@@ -60,7 +60,7 @@ font-2 = siji:pixelsize=10;1
 
 ;STATUS-BAR!!!
 modules-left = 
-modules-center = cpu memory gpu cputemp gputemp cpu_fan networkdownspeed networkspeed networksignal
+modules-center = cpu memory gpu cputemp gputemp cpu_fan networkdownspeed networkspeed 
 modules-right = info-hackspeed wlan battery xkeyboard date 
 ;STATUS-BAR!!!
 
