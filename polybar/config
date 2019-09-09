@@ -60,7 +60,7 @@ font-2 = siji:pixelsize=10;1
 
 ;STATUS-BAR!!!
 modules-left = 
-modules-center = cpu memory  cputemp  cpu_fan networkdownspeed networkspeed 
+modules-center = cpu memory gpu cputemp gputemp  cpu_fan networkdownspeed networkspeed 
 modules-right = info-hackspeed wlan battery xkeyboard date 
 ;STATUS-BAR!!!
 
@@ -113,7 +113,7 @@ font-2 = siji:pixelsize=10;1
 
 ;DOWN-BAR!!!
 modules-left = i3
-modules-center = gpu gputemp
+modules-center = 
 modules-right = volume
 ;DOWN-BAR!!!
 
