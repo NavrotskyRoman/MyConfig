@@ -6,7 +6,7 @@ alias sleep='sudo pm-suspend'
 alias list='vim ~/rmr/todo'
 alias alert='~/scripts/dunst.sh'
 alias twitch='~/Programs/streamlink-twitch-gui/start.sh'
-alias calculator='bc'
+alias calculator='bc -l'
 
 alias server='ssh -i /home/rodjer113/.ssh/my-ssh-key navrocky.roman@35.195.39.2'
 alias qb='qutebrowser/.venv/bin/python3 -m qutebrowser'
